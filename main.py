@@ -7,11 +7,11 @@ from module_init import Global_Module as MyModule
 #import module_serial
 import time
 
-#            |  0 |  1 |  2 |  3 |  4 |  5 |  6 |  7 |
-stripe_map = (  0 ,  5 ,  1 ,  4 ,  0 ,  3 ,  3 ,  2 )
+#             |  0 |  1 |  2 |  3 |  4 |  5 |  6 |  7 |  8 |  9 | 10
+segment_map = (  0 ,  7 ,  8 ,  9 ,  6 ,  0 ,  1 ,  3 ,  2 ,  5 ,  4 )
 
-def anim_func():
-    MyWS2812.anim_update()
+def blink_func():
+    MyWS2812.do_blink()
 
 # ------------------------------------------------------------------------------
 # --- Main Function                                                          ---
@@ -20,15 +20,13 @@ def main():
 
     print("=== Start Main ===")
     
-    anim_couter = 0
+    blink_couter = 0
+       
+    while MySerial.sercon_read_flag():
 
-    while MySerial.sercon_read_flag():      # Loop for Ever, execpt EOT
-
-        anim_couter = anim_couter + 1       # Anim Tick
-
-        if anim_couter > 20:                # Tick 10ms * Value
-            anim_couter = 0
-            anim_func()
+        if blink_couter > 50:
+            blink_couter = 0
+            blink_func()
         
         MySerial.sercon_read_line()
         if MySerial.get_ready_flag():       # Zeichenkette empfangen
@@ -51,26 +49,19 @@ def main():
                             #print("def")
                             MyWS2812.do_all_def()
                     if MyDecode.get_cmd_2() == "obj":
-                        #print("do->obj")
+                        #print("obj")
                         #print(MyDecode.get_value_1())
-                        if MyDecode.get_value_1() == 8:
-                            #print("Demo-Mode")
-                            MyWS2812.do_all_def()
-                            MyWS2812.anim_startup(0)
-                            MyWS2812.anim_startup(1)
-                            MyWS2812.anim_startup(2)
-                            MyWS2812.anim_startup(3)
-                            MyWS2812.anim_startup(4)
-                            MyWS2812.anim_startup(5)
-                        else:
-                            #print("Normal-Mode")
-                            #print(stripe_map[MyDecode.get_value_1()])
-                            MyWS2812.do_all_def()
-                            #MyWS2812.anim_startup(MyDecode.get_value_1())               # ohne Mapping
-                            MyWS2812.anim_startup(stripe_map[MyDecode.get_value_1()])  # mit Mapping
-                        
+                        #print(segment_map[MyDecode.get_value_1()])
+                        MyWS2812.set_led_obj(segment_map[MyDecode.get_value_1()], MyDecode.get_value_2())
+
+        blink_couter = blink_couter + 1
         # Loop-Delay !!!
         time.sleep(0.01)        # 10ms
+        
+        
+
+        
+
 
 
     print("=== End of Main ===")
@@ -87,11 +78,16 @@ if __name__ == "__main__":
 
     if MyModule.inc_ws2812:
         #print("WS2812 -> Load-Module")
-        import module_ws2812_v3 as MyWS2812         # Modul WS2812  -> WS2812-Ansteuerung
+        import module_ws2812_v2 as MyWS2812         # Modul WS2812  -> WS2812-Ansteuerung
         #print("WS2812 -> Setup")
         MyWS2812.setup_ws2812()
-        # Setup Default
-        MyWS2812.do_all_def()
+        ### Test ###
+        #print("WS2812 -> Run self test")
+        MyWS2812.self_test()
+        #print("WS2812 -> Blink Test")
+        #MyWS2812.do_blink_test()
+        #print("WS2812 -> Dot-Test")
+        #MyWS2812.do_dot_test()
 
     if MyModule.inc_decoder:
         #print("Decode -> Load-Module")
