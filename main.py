@@ -1,5 +1,6 @@
 ######################################################
 ### Main-Program                                   ###
+### Projekt Gala                                   ###
 ### Version: 1.00                                  ###
 ######################################################
 from machine import Pin, Timer                              # RaspberryPi Pico2040 -> Hardware-Library
