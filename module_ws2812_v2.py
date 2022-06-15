@@ -314,8 +314,8 @@ def main():
     print("WS2812 -> Setup")
     setup_ws2812()
         
-    #print("WS2812 -> Run self test")
-    #self_test()
+    print("WS2812 -> Run self test")
+    self_test()
     
     #print("WS2812 -> Blink Test")
     #do_blink_test()

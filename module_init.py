@@ -72,11 +72,13 @@ class Global_Default:
 def main():
 
     print("Start Global Init")
-    mg = Global_WS2812
-    print(mg.numpix_1)
-    print(mg.numpix_2)
-    print(mg.seg_01_strip, mg.seg_01_start, mg.seg_01_count)
-    print(mg.seg_02_strip, mg.seg_02_start, mg.seg_02_count)
+    mgm = Global_Module
+    mgw = Global_WS2812
+    print("Module: " + "WS2812 = " + str(mgm.inc_ws2812) + " / Serial = " + str(mgm.inc_serial) + " / Decoder = " + str(mgm.inc_decoder))
+    print(mgw.numpix_1)
+    print(mgw.numpix_2)
+    print(mgw.seg_01_strip, mgw.seg_01_start, mgw.seg_01_count)
+    print(mgw.seg_02_strip, mgw.seg_02_start, mgw.seg_02_count)
 
 
 #------------------------------------------------------------------------------
