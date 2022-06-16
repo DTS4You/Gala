@@ -5,8 +5,14 @@
 ######################################################
 from machine import Pin, Timer                              # RaspberryPi Pico2040 -> Hardware-Library
 from module_init import Global_Module as MyModule
+from module_init import Global_Default as MyDefault
 #import module_serial
 import time
+
+led = Pin(25,Pin.OUT)       # Debug LED
+btn = Pin(22,Pin.IN)        # Taster extern (Aktiv-High, Pull-Down)
+
+run_forever = True
 
 #             |  0 |  1 |  2 |  3 |  4 |  5 |  6 |  7 |  8 |  9 | 10
 segment_map = (  0 ,  7 ,  8 ,  9 ,  6 ,  0 ,  1 ,  3 ,  2 ,  5 ,  4 )
@@ -19,52 +25,25 @@ def blink_func():
 # ------------------------------------------------------------------------------
 def main():
 
-    print("=== Start Main ===")
+    print("=== Start Main -> after setup ===")
     
     blink_couter = 0
        
-    while MySerial.sercon_read_flag():
+    while run_forever:
 
         if blink_couter > 50:
             blink_couter = 0
             blink_func()
-        
-        MySerial.sercon_read_line()
-        if MySerial.get_ready_flag():       # Zeichenkette empfangen
-            #print(MySerial.get_string())
-            MyDecode.decode_input(str(MySerial.get_string()))
-            #MyDecode.decode_printout()
-            if MyDecode.get_valid_flag() == True:
-                #print("Valid Command")
-                if MyDecode.get_cmd_1() == "do":
-                    #print("do")
-                    if MyDecode.get_cmd_2() == "all":
-                        #print("all")
-                        if MyDecode.get_value_1() == 0:
-                            #print("off")
-                            MyWS2812.do_all_off()
-                        if MyDecode.get_value_1() == 1:
-                            #print("on")
-                            MyWS2812.do_all_on()
-                        if MyDecode.get_value_1() == 2:
-                            #print("def")
-                            MyWS2812.do_all_def()
-                    if MyDecode.get_cmd_2() == "obj":
-                        #print("obj")
-                        #print(MyDecode.get_value_1())
-                        #print(segment_map[MyDecode.get_value_1()])
-                        MyWS2812.set_led_obj(segment_map[MyDecode.get_value_1()], MyDecode.get_value_2())
+
+        if btn.value() == True:
+            led.value(1)
+        else:
+            led.value(0)
 
         blink_couter = blink_couter + 1
         # Loop-Delay !!!
-        time.sleep(0.01)        # 10ms
-        
-        
-
-        
-
-
-
+        time.sleep_ms(MyDefault.tick_time)        # 10ms
+    
     print("=== End of Main ===")
 
 # ==============================================================================
@@ -77,9 +56,11 @@ def main():
 
 if __name__ == "__main__":
 
+    print("=== Start Setup ===")
+
     if MyModule.inc_ws2812:
         #print("WS2812 -> Load-Module")
-        import module_ws2812_v2 as MyWS2812         # Modul WS2812  -> WS2812-Ansteuerung
+        import module_ws2812_v3 as MyWS2812         # Modul WS2812  -> WS2812-Ansteuerung
         #print("WS2812 -> Setup")
         MyWS2812.setup_ws2812()
         ### Test ###
@@ -92,16 +73,16 @@ if __name__ == "__main__":
 
     if MyModule.inc_decoder:
         #print("Decode -> Load-Module")
-        import module_decode as MyDecode
+        #import module_decode as MyDecode
         #print("Decode -> Setup")
         MyDecode.decode_setup()
         ### Test ###
         #print("Decode -> Test")
         #MyDecode.decode_input("Test")
-
+        
     if MyModule.inc_serial:
         #print("Serial-COM -> Load-Module")
-        import module_serial as MySerial
+        #import module_serial as MySerial
         #print("Serial-Con -> Setup")
         MySerial.sercon_setup()
         ### Test ###

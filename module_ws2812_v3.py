@@ -47,19 +47,19 @@ def setup_ws2812():
 
     strip_state.append(LedState(mg.numpix_1, mg.anim_0_dir, mg.anim_offset_0, mg.color_s1_0, mg.color_s1_1, mg.color_s1_2))        # 1
     strip_state.append(LedState(mg.numpix_2, mg.anim_1_dir, mg.anim_offset_1, mg.color_s2_0, mg.color_s2_1, mg.color_s2_2))        # 2
-    strip_state.append(LedState(mg.numpix_3, mg.anim_2_dir, mg.anim_offset_2, mg.color_s3_0, mg.color_s3_1, mg.color_s3_2))        # 3
-    strip_state.append(LedState(mg.numpix_4, mg.anim_3_dir, mg.anim_offset_3, mg.color_s4_0, mg.color_s4_1, mg.color_s4_2))        # 4
-    strip_state.append(LedState(mg.numpix_5, mg.anim_4_dir, mg.anim_offset_4, mg.color_s5_0, mg.color_s5_1, mg.color_s5_2))        # 5
-    strip_state.append(LedState(mg.numpix_6, mg.anim_5_dir, mg.anim_offset_5, mg.color_s6_0, mg.color_s6_1, mg.color_s6_2))        # 6
+    #strip_state.append(LedState(mg.numpix_3, mg.anim_2_dir, mg.anim_offset_2, mg.color_s3_0, mg.color_s3_1, mg.color_s3_2))        # 3
+    #strip_state.append(LedState(mg.numpix_4, mg.anim_3_dir, mg.anim_offset_3, mg.color_s4_0, mg.color_s4_1, mg.color_s4_2))        # 4
+    #strip_state.append(LedState(mg.numpix_5, mg.anim_4_dir, mg.anim_offset_4, mg.color_s5_0, mg.color_s5_1, mg.color_s5_2))        # 5
+    #strip_state.append(LedState(mg.numpix_6, mg.anim_5_dir, mg.anim_offset_5, mg.color_s6_0, mg.color_s6_1, mg.color_s6_2))        # 6
     
     strip_obj.append(module_neopixel.Neopixel(mg.numpix_1, 0, 2, "GRB"))    # 1
     strip_obj.append(module_neopixel.Neopixel(mg.numpix_2, 1, 3, "GRB"))    # 2
-    strip_obj.append(module_neopixel.Neopixel(mg.numpix_3, 2, 4, "GRB"))    # 3
-    strip_obj.append(module_neopixel.Neopixel(mg.numpix_4, 3, 5, "GRB"))    # 4
-    strip_obj.append(module_neopixel.Neopixel(mg.numpix_5, 4, 6, "GRB"))    # 5
-    strip_obj.append(module_neopixel.Neopixel(mg.numpix_6, 5, 7, "GRB"))    # 6
-    strip_obj.append(module_neopixel.Neopixel(mg.numpix_7, 6, 8, "GRB"))    # 7 -> n.B.
-    strip_obj.append(module_neopixel.Neopixel(mg.numpix_8, 7, 9, "GRB"))    # 8 -> n.B.
+    #strip_obj.append(module_neopixel.Neopixel(mg.numpix_3, 2, 4, "GRB"))    # 3
+    #strip_obj.append(module_neopixel.Neopixel(mg.numpix_4, 3, 5, "GRB"))    # 4
+    #strip_obj.append(module_neopixel.Neopixel(mg.numpix_5, 4, 6, "GRB"))    # 5
+    #strip_obj.append(module_neopixel.Neopixel(mg.numpix_6, 5, 7, "GRB"))    # 6
+    #strip_obj.append(module_neopixel.Neopixel(mg.numpix_7, 6, 8, "GRB"))    # 7 -> n.B.
+    #strip_obj.append(module_neopixel.Neopixel(mg.numpix_8, 7, 9, "GRB"))    # 8 -> n.B.
     
     
 
