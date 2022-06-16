@@ -7,7 +7,8 @@ from module_init import Global_Module as MyModule
 #import module_serial
 import time
 
-sel_0 = Pin(10,Pin.OUT)
+led = Pin(25,Pin.OUT)
+btn = Pin(22,Pin.IN)
 
 # ------------------------------------------------------------------------------
 # --- Main Function                                                          ---
@@ -17,10 +18,11 @@ def main():
     print("=== Start Main ===")
     
     while True:
-        sel_0.value(1)            #Set led turn on
-        time.sleep(1)
-        sel_0.value(0)            #Set led turn off
-        time.sleep(1)
+        if btn.value() == True:
+            led.value(1)            #Set led turn on
+        else:
+            led.value(0)            #Set led turn off
+        time.sleep(0.1)
  
 
     print("=== End of Main ===")
