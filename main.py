@@ -27,6 +27,8 @@ def main():
     global anim_start
 
     anim_delay = 0
+    step_delay = 0
+    seq_counter = 0
 
        
     while run_forever:
@@ -34,6 +36,7 @@ def main():
         if anim_delay > MyDefault.anim_time:
             #print("Zeit abgelaufen")
             anim_delay = 0
+            seq_counter = 0
             anim_flag = False
             MyWS2812.anim_stop_all()
             MyWS2812.do_all_def()
@@ -44,7 +47,8 @@ def main():
 
         if anim_flag:
             anim_delay = anim_delay + 1
-            MyWS2812.anim_update()
+            step_delay = step_delay + 1
+            
             led.value(1)
         else:
             led.value(0)
@@ -52,6 +56,26 @@ def main():
         if anim_start:
             MyWS2812.anim_startup(0)
             anim_start = False
+
+        if step_delay > MyDefault.step_time:
+            step_delay = 0
+            seq_counter = seq_counter + 1
+            MyWS2812.anim_update()
+
+        if seq_counter == 34:
+            MyWS2812.anim_stop_all()
+            MyWS2812.do_all_def()
+
+        if seq_counter == 35:
+            MyWS2812.anim_startup(1)
+
+        if seq_counter == 73:
+            MyWS2812.anim_stop_all()
+            MyWS2812.do_all_def()
+
+        if seq_counter == 74:
+            MyWS2812.anim_startup(0)
+            seq_counter = 0
 
         # Loop-Delay !!!
         time.sleep_ms(MyDefault.tick_time)        # 10ms

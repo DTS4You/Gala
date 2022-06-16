@@ -102,11 +102,9 @@ def anim_startup(value):
     strip_state[value].set_anim(True)
     strip_obj[value].fill(strip_state[value].color_anim_0)
     num_pix = strip_state[value].led_counts
-    repeat_pix = int(num_pix / MyGlobal.anim_counts)
-    for i in range(0,MyGlobal.anim_counts):
-        strip_obj[value].set_pixel(strip_state[value].offset + i * repeat_pix + 0, strip_state[value].color_anim_1)
-        strip_obj[value].set_pixel(strip_state[value].offset + i * repeat_pix + 1, strip_state[value].color_anim_2)
-        strip_obj[value].set_pixel(strip_state[value].offset + i * repeat_pix + 2, strip_state[value].color_anim_1)
+    strip_obj[value].set_pixel(num_pix - 1, strip_state[value].color_anim_1)
+    strip_obj[value].set_pixel(num_pix - 2, strip_state[value].color_anim_2)
+    strip_obj[value].set_pixel(num_pix - 3, strip_state[value].color_anim_1)
     strip_obj[value].show()
 
 def anim_update():
@@ -180,7 +178,7 @@ def main():
 
     for i in range(0,200):
         anim_update()
-        time.sleep(0.05)
+        time.sleep(0.1)
   
     print("WS2812 -> End of Program !!!")
 

@@ -17,14 +17,14 @@ class Global_WS2812:
     sel_pin_1           = 10
     sel_pin_2           = 11
 
-    numpix_1            = 34    # Anzahl LEDs im 1. Stripe -> Linke-Seite / Winkel nach oben
-    numpix_2            = 34    # Anzahl LEDs im 2. Stripe -> Mitte /Spiegel
-    numpix_3            = 1     # Anzahl LEDs im 3. Stripe n.B.
-    numpix_4            = 1     # Anzahl LEDs im 4. Stripe n.B.
-    numpix_5            = 1     # Anzahl LEDs im 5. Stripe n.B.
-    numpix_6            = 1     # Anzahl LEDs im 6. Stripe n.B.
-    numpix_7            = 1     # Anzahl LEDs im 7. Stripe n.B.
-    numpix_8            = 1     # Anzahl LEDs im 8. Stripe n.B.
+    numpix_1            = 34 + 3    # Anzahl LEDs im 1. Stripe -> Linke-Seite / Winkel nach oben
+    numpix_2            = 34 + 3    # Anzahl LEDs im 2. Stripe -> Mitte /Spiegel
+    numpix_3            = 1         # Anzahl LEDs im 3. Stripe n.B.
+    numpix_4            = 1         # Anzahl LEDs im 4. Stripe n.B.
+    numpix_5            = 1         # Anzahl LEDs im 5. Stripe n.B.
+    numpix_6            = 1         # Anzahl LEDs im 6. Stripe n.B.
+    numpix_7            = 1         # Anzahl LEDs im 7. Stripe n.B.
+    numpix_8            = 1         # Anzahl LEDs im 8. Stripe n.B.
 
     anim_offset_0       = 0
     anim_offset_1       = 0
@@ -33,7 +33,7 @@ class Global_WS2812:
     anim_offset_4       = 0
     anim_offset_5       = 0
 
-    color_def           = (  0,  0, 10)
+    color_def           = (  0,  0,  5)
     color_off           = (  0,  0,  0)
     color_on            = (100,100,100)
     color_anim_0        = (  0, 10,  0)
@@ -45,7 +45,7 @@ class Global_WS2812:
     color_s1_0          = (  0,  0,  5)
     color_s1_1          = (  0, 50,  0)
     color_s1_2          = (  0,100,  0)
-    color_s2_0          = (  0,  5,  0)
+    color_s2_0          = (  0,  0,  5)
     color_s2_1          = (  0, 50,  0)
     color_s2_2          = (  0,100,  0)
     color_s3_0          = (  0,  0,  8)
@@ -77,8 +77,8 @@ class Global_WS2812:
 class Global_Default:
 
     tick_time           = 10    # Tick time in ms
-    anim_time           = 800   # Animation Time * Tick time (10ms)
-    anim_delay          = 2     # Tick * Tick time
+    anim_time           = 1200  # Animation Time * Tick time (10ms)
+    step_time           = 3     # Tick * Tick time
     
 
 def main():
