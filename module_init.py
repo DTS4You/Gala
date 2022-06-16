@@ -18,13 +18,13 @@ class Global_WS2812:
     sel_pin_2           = 11
 
     numpix_1            = 34    # Anzahl LEDs im 1. Stripe -> Linke-Seite / Winkel nach oben
-    numpix_2            = 423   # Anzahl LEDs im 2. Stripe -> Mitte /Spiegel
-    numpix_3            = 423   # Anzahl LEDs im 3. Stripe n.B.
-    numpix_4            = 426   # Anzahl LEDs im 4. Stripe n.B.
-    numpix_5            = 423   # Anzahl LEDs im 5. Stripe n.B.
-    numpix_6            = 423   # Anzahl LEDs im 6. Stripe n.B.
-    numpix_7            = 16    # Anzahl LEDs im 7. Stripe n.B.
-    numpix_8            = 16    # Anzahl LEDs im 8. Stripe n.B.
+    numpix_2            = 34    # Anzahl LEDs im 2. Stripe -> Mitte /Spiegel
+    numpix_3            = 1     # Anzahl LEDs im 3. Stripe n.B.
+    numpix_4            = 1     # Anzahl LEDs im 4. Stripe n.B.
+    numpix_5            = 1     # Anzahl LEDs im 5. Stripe n.B.
+    numpix_6            = 1     # Anzahl LEDs im 6. Stripe n.B.
+    numpix_7            = 1     # Anzahl LEDs im 7. Stripe n.B.
+    numpix_8            = 1     # Anzahl LEDs im 8. Stripe n.B.
 
     anim_offset_0       = 0
     anim_offset_1       = 0
@@ -42,9 +42,9 @@ class Global_WS2812:
     color_blink_on      = (100,100,100)
     color_blink_off     = ( 50, 50, 50)
 
-    color_s1_0          = (  5,  0,  0)
-    color_s1_1          = ( 50,  0,  0)
-    color_s1_2          = (100,  0,  0)
+    color_s1_0          = (  0,  0,  5)
+    color_s1_1          = (  0, 50,  0)
+    color_s1_2          = (  0,100,  0)
     color_s2_0          = (  0,  5,  0)
     color_s2_1          = (  0, 50,  0)
     color_s2_2          = (  0,100,  0)
@@ -71,13 +71,14 @@ class Global_WS2812:
     anim_4_dir          = True
     anim_5_dir          = True
 
-    anim_counts         = 4
+    anim_counts         = 1
 
 
 class Global_Default:
 
-    tick_time           = 10            # Tick time in ms
-    anim_time           = 500           # x * Tick
+    tick_time           = 10    # Tick time in ms
+    anim_time           = 800   # Animation Time * Tick time (10ms)
+    anim_delay          = 2     # Tick * Tick time
     
 
 def main():
@@ -89,9 +90,9 @@ def main():
     print("Module: " + "WS2812 = " + str(mgm.inc_ws2812) + " / Serial = " + str(mgm.inc_serial) + " / Decoder = " + str(mgm.inc_decoder))
     print(mgw.numpix_1)
     print(mgw.numpix_2)
-    print(mgw.seg_01_strip, mgw.seg_01_start, mgw.seg_01_count)
-    print(mgw.seg_02_strip, mgw.seg_02_start, mgw.seg_02_count)
-    print(mgd.blink_freq)
+    print(mgw.anim_offset_0)
+    print(mgw.anim_0_dir)
+    print(mgd.anim_time)
 
 #------------------------------------------------------------------------------
 #--- Main

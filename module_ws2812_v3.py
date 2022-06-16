@@ -104,9 +104,9 @@ def anim_startup(value):
     num_pix = strip_state[value].led_counts
     repeat_pix = int(num_pix / MyGlobal.anim_counts)
     for i in range(0,MyGlobal.anim_counts):
-        strip_obj[value].set_pixel(strip_state[value].offset + i * repeat_pix + 1, strip_state[value].color_anim_1)
-        strip_obj[value].set_pixel(strip_state[value].offset + i * repeat_pix + 2, strip_state[value].color_anim_2)
-        strip_obj[value].set_pixel(strip_state[value].offset + i * repeat_pix + 3, strip_state[value].color_anim_1)
+        strip_obj[value].set_pixel(strip_state[value].offset + i * repeat_pix + 0, strip_state[value].color_anim_1)
+        strip_obj[value].set_pixel(strip_state[value].offset + i * repeat_pix + 1, strip_state[value].color_anim_2)
+        strip_obj[value].set_pixel(strip_state[value].offset + i * repeat_pix + 2, strip_state[value].color_anim_1)
     strip_obj[value].show()
 
 def anim_update():
@@ -122,31 +122,22 @@ def anim_stop_all():
     for strip in strip_state:
         strip.set_anim(False)
 
-def test_stripe():                                # Pro Stripe einmal Aus-RGB(25%) -Aus 
+def test_stripe():
     
-    # strip_obj[0].set_pixel_line(0, strip_obj[0].num_leds - 1, ( 40,  0,  0))
-    # strip_obj[1].set_pixel_line(0, strip_obj[1].num_leds - 1, (  0, 40,  0))
-    # strip_obj[2].set_pixel_line(0, strip_obj[2].num_leds - 1, (  0,  0, 40))
-    # strip_obj[3].set_pixel_line(0, strip_obj[3].num_leds - 1, ( 30, 30,  0))
-    # strip_obj[4].set_pixel_line(0, strip_obj[4].num_leds - 1, ( 20,  0, 30))
-    # strip_obj[5].set_pixel_line(0, strip_obj[5].num_leds - 1, (  0, 30, 20))
-    # strip_obj[6].set_pixel_line(0, strip_obj[6].num_leds - 1, ( 30, 30, 30))
-    # strip_obj[7].set_pixel_line(0, strip_obj[7].num_leds - 1, (  5,  5, 10))
-
     strip_obj[0].set_pixel_line(0, strip_obj[0].num_leds - 1, MyGlobal.color_def)
     strip_obj[1].set_pixel_line(0, strip_obj[1].num_leds - 1, MyGlobal.color_def)
-    strip_obj[2].set_pixel_line(0, strip_obj[2].num_leds - 1, MyGlobal.color_def)
-    strip_obj[3].set_pixel_line(0, strip_obj[3].num_leds - 1, MyGlobal.color_def)
-    strip_obj[4].set_pixel_line(0, strip_obj[4].num_leds - 1, MyGlobal.color_def)
-    strip_obj[5].set_pixel_line(0, strip_obj[5].num_leds - 1, MyGlobal.color_anim_0)
-    strip_obj[6].set_pixel_line(0, strip_obj[6].num_leds - 1, MyGlobal.color_def)
-    strip_obj[7].set_pixel_line(0, strip_obj[7].num_leds - 1, MyGlobal.color_def)
+    #strip_obj[2].set_pixel_line(0, strip_obj[2].num_leds - 1, MyGlobal.color_def)
+    #strip_obj[3].set_pixel_line(0, strip_obj[3].num_leds - 1, MyGlobal.color_def)
+    #strip_obj[4].set_pixel_line(0, strip_obj[4].num_leds - 1, MyGlobal.color_def)
+    #strip_obj[5].set_pixel_line(0, strip_obj[5].num_leds - 1, MyGlobal.color_anim_0)
+    #strip_obj[6].set_pixel_line(0, strip_obj[6].num_leds - 1, MyGlobal.color_def)
+    #strip_obj[7].set_pixel_line(0, strip_obj[7].num_leds - 1, MyGlobal.color_def)
 
     strip_obj[0].set_pixel(4, MyGlobal.color_anim_1)
     strip_obj[0].set_pixel(5, MyGlobal.color_anim_2)
     strip_obj[0].set_pixel(6, MyGlobal.color_anim_1)
 
-    for i in range(0,8):
+    for i in range(0,2):
         strip_obj[i].show()
 
     time.sleep(0.3)
@@ -189,7 +180,7 @@ def main():
 
     for i in range(0,200):
         anim_update()
-        time.sleep(0.1)
+        time.sleep(0.05)
   
     print("WS2812 -> End of Program !!!")
 
