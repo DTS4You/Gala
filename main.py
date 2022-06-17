@@ -14,7 +14,6 @@ btn = Pin(22,Pin.IN)        # Taster extern (Aktiv-High, Pull-Down)
 anim_flag   = False
 anim_start  = False
 button_flag = False
-anim_state  = False
 
 run_forever = True
 
@@ -27,7 +26,6 @@ def main():
     
     global anim_flag
     global anim_start
-    global anim_state
     global button_flag
 
     anim_delay = 0
@@ -37,36 +35,34 @@ def main():
        
     while run_forever:
 
- 
-        if btn.value() == True and anim_flag == True:
+        # if anim_delay > MyDefault.anim_time:
+        #     #print("Zeit abgelaufen")
+        #     anim_delay = 0
+        #     seq_counter = 0
+        #     anim_flag = False
+        #     MyWS2812.anim_stop_all()
+        #     MyWS2812.do_all_def()
+
+        if btn.value() == True and button_flag == False:
+            #print("Taste gedrückt")
+            button_flag = True
+            if anim_flag == False:
+                anim_start = True
+                anim_flag = True
+            else:
                 anim_delay = 0
                 seq_counter = 0
                 anim_flag = False
                 MyWS2812.anim_stop_all()
                 MyWS2812.do_all_def()
-
-        if btn.value() == True and button_flag == False:
-            button_flag = True
-            anim_flag = True
-            if anim_state == False:
-                anim_state = True
-                anim_start = True
-            else:
-                anim_state = False
-
-
-
+        
         if btn.value() == False and button_flag == True:
+            #print("Taste losgelassen")
             button_flag = False
-
-        if anim_flag == True:
-            anim_flag = True
-            anim_start = True
 
         if anim_flag:
             anim_delay = anim_delay + 1
             step_delay = step_delay + 1
-            
             led.value(1)
         else:
             led.value(0)
